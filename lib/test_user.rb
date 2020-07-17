@@ -5,7 +5,7 @@ require 'watir'
 require 'dotenv/load'
 
 class TestUser
-  TARGET_URL = 'https://house-dev.activebc.ru/'
+  TARGET_URL = 'https://house-dev.activebc.ru'
 
   def initialize(phone:, user_name:, code:)
     @phone = phone
@@ -28,11 +28,17 @@ class TestUser
   end
 
   def sign_out
-    # TODO: (Log out)
+    @browser.goto "#{TARGET_URL}/users/sign_out"
+    check_content('header-landing__login')
   end
 
   def sign_in
-    # TODO: (Login to your existing personal account)
+    go_to(TARGET_URL, 'Вход / Регистрация')
+    set_text_field('auth_phone_form_phone', @phone)
+    press_button('Продолжить')
+    set_text_field('auth_code_form_code', @code)
+    press_button('Продолжить')
+    check_content(['flash', 'flash--notice'])
   end
 
   def destroy

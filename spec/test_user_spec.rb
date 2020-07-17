@@ -17,5 +17,14 @@ describe 'TestUser' do
     expect(
       @test_user.sign_up
     ).to eq "Добро пожаловать! Вы успешно зарегистрировались.\nЗакрыть"
+    expect(
+      @test_user.sign_out
+    ).to eq 'Вход / Регистрация'
+    expect(
+      @test_user.sign_in
+    ).to eq "Вход в систему выполнен.\nЗакрыть"
+    expect(
+      @test_user.sign_out
+    ).to eq 'Вход / Регистрация'
   end
 end
